@@ -1,0 +1,70 @@
+.mini {
+    width:80px;
+    height:100px;
+    border: black solid 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+.mini .art {
+    width:60px;
+    height:80px;
+    background-size: cover;
+}
+
+.mini .effect {
+    position: absolute;
+    top:70px;
+    color:white;
+
+}
+
+.mini .soul-block {
+    position: absolute;
+    top:10px;
+}
+
+.mini .soul {
+    width:10px;
+    height:10px;
+    background-image: url(assets/type_icons.png);
+    background-size: 80px;
+}
+
+.blue,.soul.b {
+    border-color:#4D4DFF; 
+    background-color: #4D4DFF;
+}
+
+.green,.soul.g {
+    border-color:#3ABF3A; 
+    background-color: #3ABF3A;
+
+}
+.red,.soul.r {
+    border-color:#BF3A3A; 
+    background-color: #BF3A3A;
+}
+
+.soul.w {
+    background-color: #BF3A3A;
+}
+
+.mini .entry {
+    background-color: orange;
+    border-radius: 10% 50% 50% 10% / 100% 100% 100% 100%;
+   }
+   
+   .ability {
+     background-color: purple;
+
+     border-radius: 100% 10% 100% 10% / 50% 100% 50% 100% ;
+
+   }
+   
+   .aura {
+     background-color: chartreuse;
+   
+     border-radius: 100% 100% 00% 0% / 100% 100% 0% 0%;
+   }
+   

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul</title>
+    <link rel="stylesheet" href="board.css">
+    <link rel="stylesheet" href="mini.css">
+    <script type="module" src="load.js"></script>
+    <script type="module" src="debug.js"></script>
+    <script type="module" src="actions.js"></script>
+    <script type="module" src="gamestate.js"></script>
+    <script type="module" src="onclick.js"></script>
+    <script type="module" src="render.js"></script>
+
+
+    
+</head>
+<body>
+    <div class="mini card card0 blue">
+        <div class="art"></div>
+        <div class="soul-block">
+            <div class="soul r"></div>
+            <div class="soul w"></div>
+        </div>
+        <div class="effect ability"></div>
+    </div>
+   
+    <div id="main-menu-scene"></div>
+    <div id="match-scene">
+        <div class="game-container">
+            <div id="debug-menu">
+                <button id="Deck1">Deck1</button>
+                <button id="Draw">Draw(1)</button>
+                <button id="Mull">Mull</button>
+                <button id="Discard1">Discard(1)</button>
+                <button id="Discard1red">Discard(1)red</button>
+                <button id="mainScene">mainScene</button>
+                <button id="searchDeck1">searchDeck(1)</button>
+                <button id="EndSelection">EndSelection</button>
+            </div>
+            <!-- Player 1 -->
+            <div class="player-area" id="enemyarea">
+              <div class="hand" id="player1-hand">
+                <!-- Player 1 Hand -->
+              </div>
+              <div class="game-area">
+                <div class="board" id="player1-board">
+                  <!-- Player 1 Board -->
+                </div>
+                <div class="deck-discard">
+                 
+                  <div class="discard" id="player1-discard">Discard</div>
+                  <div class="deck" id="player1-deck">Deck</div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Player 2 -->
+             <div id="searchbox" style="display: none;"></div>
+             
+            <div class="player-area">
+              <div class="game-area">
+                
+                <div class="board" id="board">
+                  <!-- Player 2 Board -->
+                </div>
+                <div class="deck-discard">
+                    <div class="deck" id="deck">Deck</div>
+                    <div class="discard" id="discard">Discard</div>
+                  </div>
+              </div>
+              <div class="hand" id="hand">
+                <!-- Player 2 Hand -->
+              </div>
+            </div>
+          </div>
+          
+    <!-- board end -->
+     
+
+</body>
+</html>
