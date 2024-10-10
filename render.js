@@ -23,20 +23,22 @@ function renderHand() {
         cardDiv.onclick = function () {
             
                 
-                onClick(handContainer.id,index)
+                onClick("hand",index,cardDiv)
             
             
         }
         cardDiv.textContent = card; // Set the card name as text
         handContainer.appendChild(cardDiv); // Add the card to the hand container
     });
+
+    
 }
 
 function renderBoard(){
     const boardContainer = document.getElementById('board');
     boardContainer.innerHTML = ''; // Clear existing 
     for (let i = 0; i < 4; i++) {
-        if (gamestate.board[i].length > 0) {
+        if (gamestate.board[i] > 0) {
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('CARD'); // Optionally add a class for styling
         cardDiv.onclick = function () {
@@ -54,14 +56,17 @@ export function renderPile(location){
     document.getElementById('searchbox').style.display = "flex";
     const searchbox = document.getElementById('searchbox');
     searchbox.innerHTML = ''; // Clear existing 
+    console.log(gamestate[location])
+    if (gamestate[location] == undefined) return;
     gamestate[location].forEach((card,index) => {
                 //render function
 
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('CARD',cards[card].color); // Optionally add a class for styling
         cardDiv.onclick = function () {
-            console.log("CLICKED")
-            onClick("searchbox",index)
+          
+            onClick(location,index,cardDiv)
+            
         }
         cardDiv.textContent = card; // Set the card name as text
         searchbox.appendChild(cardDiv); // Add the card to the hand container
@@ -69,8 +74,7 @@ export function renderPile(location){
 }
 
 export function renderTargets(boardLocationID,list){
-    if (boardLocationID == 'deck') {boardLocationID = 'searchbox';}
-    console.log("renderTargets "+boardLocationID)
+    if (boardLocationID == 'deck' || boardLocationID == 'discard') {boardLocationID = 'searchbox';}
     if (list === undefined) {
         console.log("no valid targets");
         return; // Exit the function if the list is undefined

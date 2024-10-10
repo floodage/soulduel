@@ -7,15 +7,6 @@ import { renderPile } from "/render.js";
 
 import {cards} from '/load.js'
 
-export var selectionQty = 0;
-export function shuffleDeck(x){
-    for (let i = x.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [x[i], x[j]] = [x[j], x[i]]; 
-    }
-    return x;
-    
-}
 export async function discard(qty,condition){
     gamestate.agency=false;
     await chooseCard("hand",1,condition);
@@ -43,11 +34,11 @@ export function draw(x){
 
 
 
-export async function search(qty,condition){
+export async function search(qty,zone,condition){
     
     gamestate.agency=false;
     await chooseCard('deck',qty,condition)
-    cardMove("hand")
+    cardMove(zone)
     gamestate.selection = [];
     renderGamestate()
     gamestate.agency=true;
@@ -56,7 +47,14 @@ export async function search(qty,condition){
 
 }
 
-export function recover(qty,condition){
+export async function recover(qty,zone,condition){
+    gamestate.agency=false
+    await chooseCard('discard',qty,condition)
+    cardMove(zone)
+    gamestate.selection = [];
+    renderGamestate()
+    gamestate.agency=true;
+    mainScene()
 }
 
 
@@ -68,7 +66,6 @@ function cardToHand(card){
 }
 export function cardMove(location){
     //this is from gamestate.selection
-    console.log(gamestate.selection)
     gamestate.selection.forEach(selectedCard => {
         // Move the card from its current location to the deck
         gamestate[location].push(gamestate[selectedCard.location][selectedCard.position]);
@@ -108,7 +105,7 @@ export function calcTargets(location, qty, condition){
 
     export async function chooseCard(location, qty, condition) {
         console.log(" chooseCard")
-        if (location == 'deck'){
+        if (location == 'deck' || location == 'discard'){
             renderPile(location)
             location == 'searchbox'
 
@@ -128,12 +125,11 @@ export function calcTargets(location, qty, condition){
     }
 
 
-    //check they meet the conditions
-    
-
-       
-
-    // only repeat the selection up to the qty
-    // when qty = end and cards are selected, then sent back to
-    //return selection of cards by their number or return false if conditions can't be met
-
+    export function shuffleDeck(x){
+        for (let i = x.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [x[i], x[j]] = [x[j], x[i]]; 
+        }
+        return x;
+        
+    }
