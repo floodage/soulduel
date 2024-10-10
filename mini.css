@@ -1,70 +1,94 @@
 .mini {
     width:80px;
     height:100px;
-    border: black solid 10px;
-    border-radius: 4px;
-    display: none;
+    position: relative;
 }
 
 .mini .art {
-    width:60px;
-    height:80px;
-    background-size: cover;
+    width:80px;
+    height:100px;
+    background-size: cover!important;
+    border: black solid 10px;
+    border-radius: 4px;
+
 }
 
 .mini .effect {
     position: absolute;
     top:70px;
     color:white;
+    padding: 2px;
 
 }
 
 .mini .soul-block {
     position: absolute;
-    top:10px;
+    left: -10px;
+    top:0px;
 }
 
 .mini .soul {
-    width:10px;
-    height:10px;
+    width:30px;
+    height:30px;
     background-image: url(assets/type_icons.png);
-    background-size: 80px;
+    background-size: 210px;
+    border-radius: 100%;
 }
-
-.blue,.soul.b {
-    border-color:#4D4DFF; 
+.mini.blue .art {
+    border-color: #4D4DFF;
+}
+.mini.green .art {
+    border-color: #3ABF3A;
+}
+.mini.red .art {
+    border-color: #BF3A3A;
+}
+.soul.b {
     background-color: #4D4DFF;
 }
 
-.green,.soul.g {
-    border-color:#3ABF3A; 
+.soul.g {
     background-color: #3ABF3A;
 
 }
-.red,.soul.r {
-    border-color:#BF3A3A; 
+.soul.r {
     background-color: #BF3A3A;
 }
 
 .soul.w {
-    background-color: #BF3A3A;
+    background-color: grey;
 }
 
-.mini .entry {
+.soul.blue {
+
+    background-position: 0% ; 
+}
+
+.soul.g {
+
+    background-position: -100% ; 
+}
+.soul.r {
+
+    background-position: -300% ; 
+}
+
+.entry .effect {
     background-color: orange;
-    border-radius: 10% 50% 50% 10% / 100% 100% 100% 100%;
    }
    
-   .ability {
+   .ability .effect {
      background-color: purple;
 
-     border-radius: 100% 10% 100% 10% / 50% 100% 50% 100% ;
 
    }
    
-   .aura {
+   .aura .effect{
      background-color: chartreuse;
    
-     border-radius: 100% 100% 00% 0% / 100% 100% 0% 0%;
    }
    
+
+   .Soul .soul{
+    display: none;
+   }

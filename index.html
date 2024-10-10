@@ -17,14 +17,7 @@
     
 </head>
 <body>
-    <div class="mini card card0 blue">
-        <div class="art"></div>
-        <div class="soul-block">
-            <div class="soul r"></div>
-            <div class="soul w"></div>
-        </div>
-        <div class="effect ability"></div>
-    </div>
+   
    
     <div id="main-menu-scene"></div>
     <div id="match-scene">
@@ -48,7 +41,10 @@
             </div>
           
             <!-- Player 2 -->
-             <div id="searchbox" style="display: none;"></div>
+             <div id="deck" style="display: none;"></div>
+             <div id="discard" style="display: none;"></div>
+
+
              
             <div class="player-area">
               <div class="game-area">
@@ -57,8 +53,8 @@
                   <!-- Player 2 Board -->
                 </div>
                 <div class="deck-discard">
-                    <div class="deck" id="deck">Deck</div>
-                    <div class="discard" id="discard">Discard</div>
+                    <div class="deck" id="deckpile">Deck</div>
+                    <div class="discard" id="discardpile">Discard</div>
                   </div>
               </div>
               <div class="hand" id="hand">
@@ -66,20 +62,31 @@
               </div>
             </div>
             <div id="debug-menu">
+              <div>              <button id="Draw">Draw(1)</button>
+                <button id="Discard1">Discard(1)</button>
+                <button id="searchDeck1">searchDeck(1)</button>
+                <button id="recover1">recover(1)</button>
+
+
+              </div>
               <button id="Deck1">Deck1</button>
-              <button id="Draw">Draw(1)</button>
               <button id="Mull">Mull</button>
-              <button id="Discard1">Discard(1)</button>
-              <button id="Discard1red">Discard(1)red</button>
               <button id="mainScene">mainScene</button>
-              <button id="searchDeck1">searchDeck(1)</button>
-              <button id="recover1">recover(1)</button>
               <button id="EndSelection">EndSelection</button>
+              <button id="testGamestate">Test Gamestate</button>
+              <button id="attachhand1toboard1">attachhand1toboard1</button>
           </div>
           </div>
           
     <!-- board end -->
-     
+    <div class="mini" id="clone">
+      <div class="art"></div>
+      <div class="soul-block">
+          <div class="soul"></div>
+          <div class="soul"></div>
+      </div>
+      <div class="effect"></div>
+  </div>
 
 </body>
 </html>

@@ -1,34 +1,43 @@
 
 import { gamestate } from '/gamestate.js'
 import { onClick } from '/onclick.js';
-import { onClickBoard } from '/onclick.js';
 import { cards } from '/load.js'
 
 export function renderGamestate(){
 renderHand()
 renderBoard()
 console.log(gamestate)
+mainScene()
+
 }
 
-function renderCard(){
+function renderCard(card,index,container,zone){
+    var clone = document.getElementById("clone").cloneNode(true);
+    clone.id = "";
+    clone.classList.add('CARD',cards[card].color,cards[card].type, "card"+cards[card].num,cards[card]["effect"]); // Optionally add a class for styling
+    clone.onclick = function () {
+            onClick(zone,index,clone)
+    }
+ 
+    if (cards[card].type == 'Lord'){
+        let unitCost = cards[card].cost.split('')
+        for (let i = 0; i < 2; i++){
+           clone.querySelector('.soul-block').children[i].classList.add(unitCost[i])
 
+        }
+         
+       
+    }
+    
+    container.appendChild(clone); // Add the card to the hand container
 }
 
 function renderHand() {
-    const handContainer = document.getElementById('hand');
-    handContainer.innerHTML = ''; // Clear existing hand
+    const container = document.getElementById('hand');
+    var zone = "hand";
+    container.innerHTML = ''; // Clear existing hand
     gamestate.hand.forEach((card,index) => {
-        const cardDiv = document.createElement('div');
-        cardDiv.classList.add('CARD',cards[card].color); // Optionally add a class for styling
-        cardDiv.onclick = function () {
-            
-                
-                onClick("hand",index,cardDiv)
-            
-            
-        }
-        cardDiv.textContent = card; // Set the card name as text
-        handContainer.appendChild(cardDiv); // Add the card to the hand container
+        renderCard(card,index,container,zone)
     });
 
     
@@ -39,42 +48,26 @@ function renderBoard(){
     boardContainer.innerHTML = ''; // Clear existing 
     for (let i = 0; i < 4; i++) {
         if (gamestate.board[i] > 0) {
-        const cardDiv = document.createElement('div');
-        cardDiv.classList.add('CARD'); // Optionally add a class for styling
-        cardDiv.onclick = function () {
-            onClickBoard(gamestate.board[i])
-        }
-        cardDiv.textContent = gamestate.board[i]; // Set the card name as text
-        boardContainer.appendChild(cardDiv); // Add the card to the hand container
+            renderCard(gamestate.board[i],i,boardContainer,"board")
+        
     }
     }
   
 }
 
-export function renderPile(location){
+export function renderPile(zone){
+    // * we only do this for deck/discard searches
     document.getElementById("enemyarea").style.display= "none"
-    document.getElementById('searchbox').style.display = "flex";
-    const searchbox = document.getElementById('searchbox');
-    searchbox.innerHTML = ''; // Clear existing 
-    console.log(gamestate[location])
-    if (gamestate[location] == undefined) return;
-    gamestate[location].forEach((card,index) => {
-                //render function
-
-        const cardDiv = document.createElement('div');
-        cardDiv.classList.add('CARD',cards[card].color); // Optionally add a class for styling
-        cardDiv.onclick = function () {
-          
-            onClick(location,index,cardDiv)
-            
-        }
-        cardDiv.textContent = card; // Set the card name as text
-        searchbox.appendChild(cardDiv); // Add the card to the hand container
+    document.getElementById(zone).style.display = "flex"
+    const container = document.getElementById(zone);
+    container.innerHTML = ''; // Clear existing 
+    if (gamestate[zone] == undefined) return;
+    gamestate[zone].forEach((card,index) => {
+                renderCard(card,index,container,zone)
     });
 }
 
 export function renderTargets(boardLocationID,list){
-    if (boardLocationID == 'deck' || boardLocationID == 'discard') {boardLocationID = 'searchbox';}
     if (list === undefined) {
         console.log("no valid targets");
         return; // Exit the function if the list is undefined
@@ -96,7 +89,9 @@ export function renderTargets(boardLocationID,list){
 
 export function mainScene(){
      document.getElementById("enemyarea").style.display= "flex"
-    const searchbox = document.getElementById("searchbox").style.display = "none"
+    document.getElementById("deck").style.display = "none"
+    document.getElementById("discard").style.display = "none"
+
 }
 
 export function removeAllIds(containerId) {

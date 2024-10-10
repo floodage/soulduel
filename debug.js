@@ -42,18 +42,7 @@ document.getElementById('EndSelection').addEventListener('click', function () {
 
 });
 
-document.getElementById('Discard1').addEventListener('click', function () {
-    discard(1)
 
-
-});
-
-
-document.getElementById('Discard1red').addEventListener('click', function () {
-    discard(1, { color: "red" })
-
-
-});
 
 document.getElementById('mainScene').addEventListener('click', function () {
     mainScene()
@@ -65,10 +54,23 @@ search(1,'hand')
        
      });
 
+     document.getElementById('Discard1').addEventListener('click', function() {
+        discard(1)     
+               
+             });
+        
 
      
 document.getElementById('recover1').addEventListener('click', function() {
     recover(1,'hand')     
            
          });
+
+         document.getElementById('attachhand1toboard1').addEventListener('click', function() {
+            recover(1,'hand')     
+                   
+                 });
+                 
+         
+
          

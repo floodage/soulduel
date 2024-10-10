@@ -9,27 +9,29 @@ import {cards} from '/load.js'
 
 export async function discard(qty,condition){
     gamestate.agency=false;
-    await chooseCard("hand",1,condition);
+    await chooseCard("hand",qty);
     cardMove("discard")
     gamestate.agency=true;
     gamestate.selection = [];
     renderGamestate()
 }
 export function draw(x){
-   // Shuffle the deck before drawing
    shuffleDeck(gamestate.deck);
     
    // Loop to draw x cards
    for (let i = 0; i < x; i++) {
        if (gamestate.deck.length) {
-           // Move the top card from the deck to the hand
-           cardToHand(gamestate.deck.shift());
+        gamestate.selection.push({ location: 'deck', position: 0 });
+          gamestate.selection.push() 
+           cardMove("hand");
+           gamestate.selection = [];
        } else {
            console.log("The deck is empty!");
            break; // Stop drawing if the deck is empty
        }
    }
       renderGamestate();
+
 }
 
 
@@ -58,16 +60,13 @@ export async function recover(qty,zone,condition){
 }
 
 
-function cardToHand(card){
-    if(gamestate.hand.length != 5) gamestate.hand.push(card)
-    else gamestate.deck.push(card)
-    renderGamestate()
 
-}
 export function cardMove(location){
     //this is from gamestate.selection
     gamestate.selection.forEach(selectedCard => {
-        // Move the card from its current location to the deck
+        // Move the card from its current location to the desire location
+        if (location == 'hand' && gamestate.hand.length == 5) return;
+       
         gamestate[location].push(gamestate[selectedCard.location][selectedCard.position]);
         
         // Remove the card from its original location
@@ -78,8 +77,6 @@ export function cardMove(location){
 
 export function calcTargets(location, qty, condition){
     const list = Array.from(gamestate[location].keys()) 
-    console.log("calcTargets " +list)
-    console.log(list)
     // if there is no condition all cards in the zone can be selected
     if (condition === undefined) return list;
     const matchingIndices = []; // List to store matching indices
@@ -104,12 +101,7 @@ export function calcTargets(location, qty, condition){
 
 
     export async function chooseCard(location, qty, condition) {
-        console.log(" chooseCard")
-        if (location == 'deck' || location == 'discard'){
-            renderPile(location)
-            location == 'searchbox'
-
-        }
+        if (location == "deck"||location =="discard") {renderPile(location)}
             renderTargets(location, calcTargets(location, qty, condition));
             return new Promise((resolve) => {
                  function selectionHandler() {
