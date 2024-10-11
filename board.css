@@ -24,17 +24,34 @@ body {
 
 }
 
-#target {
+.target {
   outline: red solid;
 }
 
-#targeted {
+.targeted {
   outline: green solid;
 }
 
 #clone {
   display: none;
 }
+
+
+.board0,.board1,.board2,.board3 {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* To reverse the stacking order if needed */
+  margin-top: 0px;
+}
+
+.board0 > * {
+  margin-top: -60px;
+}
+
+.board0:nth-child(0){
+  margin-top: 0px;
+}
+
 
 #deck,
 #discard {

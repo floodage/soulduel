@@ -6,10 +6,34 @@ export var gamestate = {
   hand: [],
   discard: [],
   board: [
-    [],
-    [],
-    [],
-    [],
+    {
+      "card": null,
+      "status": null,
+      "position": null,
+      "ready":null,
+      "attached": []
+    },
+    {
+     "card": null,
+      "status": null,
+      "position": null,
+      "ready":null,
+      "attached": []
+    },
+    {
+     "card": null,
+      "status": null,
+      "position": null,
+      "ready":null,
+      "attached": []
+    },
+    {
+    "card": null,
+      "status": null,
+      "position": null,
+      "ready": null,
+      "attached": []
+    }
 
   ],
   agency: true,
@@ -24,10 +48,34 @@ document.getElementById('testGamestate').addEventListener('click', function () {
     hand: [8, 1, 19, 30],
     discard: [2, 4],
     board: [
-      [32],
-      [5],
-      [6],
-      [],
+      {
+        "card": 32,
+        "status": 'charged',
+        "position": 'back',
+        "ready": 'false',
+        "attached": [1,3]
+      },
+      {
+       "card": 3,
+        "status": null,
+        "position": null,
+        "ready":null,
+        "attached": []
+      },
+      {
+       "card": null,
+        "status": null,
+        "position": null,
+        "ready":null,
+        "attached": []
+      },
+      {
+      "card": null,
+        "status": null,
+        "position": null,
+        "ready": null,
+        "attached": []
+      }
 
     ],
     agency: true,

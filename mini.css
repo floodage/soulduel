@@ -34,13 +34,13 @@
     background-size: 210px;
     border-radius: 100%;
 }
-.mini.blue .art {
+.mini.blue > .art {
     border-color: #4D4DFF;
 }
-.mini.green .art {
+.mini.green > .art {
     border-color: #3ABF3A;
 }
-.mini.red .art {
+.mini.red > .art {
     border-color: #BF3A3A;
 }
 .soul.b {
